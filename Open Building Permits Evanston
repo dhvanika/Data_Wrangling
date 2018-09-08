@@ -1,0 +1,5 @@
+https://data.cityofevanston.org/resource/nxfh-jnb7.json
+
+https://data.cityofevanston.org/resource/nxfh-jnb7.json?$limit=5
+
+https://data.cityofevanston.org/resource/nxfh-jnb7.json?$limit=5&$select=contractor_company_name,contractor_trade,contractor_trade_mapped,contractor_license_number,contractor_state_license,contractor_full_name,contractor_company_desc,contractor_phone,contractor_address_1,contractor_address_2,contractor_city,contractor_state,contractor_zip,contractor_email
