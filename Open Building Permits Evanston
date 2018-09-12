@@ -23,9 +23,9 @@ q = ?$query=SELECT contractor_company_name , contractor_phone , contractor_email
 q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email , COUNT(*) AS count GROUP BY contractor_company_name , contractor_phone , contractor_email ORDER BY contractor_company_name , contractor_phone , contractor_email 
 q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email ORDER BY contractor_company_name , contractor_phone , contractor_email
 
-## query contractor & dedupe & where application_date in 201808
-q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email WHERE application_date>="2018-08-01T00:00:00.000" AND application_date<"2018-09-01T00:00:00.000" ORDER BY contractor_company_name , contractor_phone , contractor_email
+## query contractor & dedupe & is not null & where application_date in 201808
+q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email WHERE application_date>="2018-08-01T00:00:00.000" AND application_date<"2018-09-01T00:00:00.000" AND contractor_company_name IS NOT NULL ORDER BY contractor_company_name , contractor_phone , contractor_email
 
 df=s+q
 
-https://data.cityofevanston.org/resource/nxfh-jnb7.json?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email WHERE application_date>="2018-08-01T00:00:00.000" AND application_date<"2018-09-01T00:00:00.000" ORDER BY contractor_company_name , contractor_phone , contractor_email
+https://data.cityofevanston.org/resource/nxfh-jnb7.json?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email WHERE application_date>="2018-08-01T00:00:00.000" AND application_date<"2018-09-01T00:00:00.000" AND contractor_company_name IS NOT NULL ORDER BY contractor_company_name , contractor_phone , contractor_email
