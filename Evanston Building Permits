@@ -6,38 +6,12 @@ s = https://data.cityofevanston.org/resource/nxfh-jnb7.json
 ## limits records
 q = ?$limit=5
 
-## limit & select
-q = ?$limit=5&$select=contractor_company_name,contractor_trade,contractor_trade_mapped,contractor_license_number,contractor_state_license,contractor_full_name,contractor_company_desc,contractor_phone,contractor_address_1,contractor_address_2,contractor_city,contractor_state,contractor_zip,contractor_email
-
-
-
-
-
-
 ## query & limit
-q = ?$query=SELECT contractor_company_name,contractor_trade LIMIT 15
-
-## query contractor & limit
-q = ?$query=SELECT contractor_company_name,contractor_trade,contractor_trade_mapped,contractor_license_number,contractor_state_license,contractor_full_name,contractor_company_desc,contractor_phone,contractor_address_1,contractor_address_2,contractor_city,contractor_state,contractor_zip,contractor_email LIMIT 15
-q = ?$query=SELECT contractor_company_name ,contractor_trade ,contractor_trade_mapped ,contractor_license_number ,contractor_state_license ,contractor_full_name ,contractor_company_desc ,contractor_phone ,contractor_address_1 ,contractor_address_2 ,contractor_city ,contractor_state ,contractor_zip ,contractor_email LIMIT 15
-q = ?$query=SELECT contractor_company_name , contractor_trade , contractor_trade_mapped , contractor_license_number , contractor_state_license , contractor_full_name , contractor_company_desc , contractor_phone , contractor_address_1 , contractor_address_2 , contractor_city , contractor_state , contractor_zip , contractor_email LIMIT 15
-
-## query contractor & limit & subquery
-q = ?$query=SELECT contractor_company_name , contractor_phone , contractor_email , COUNT(*) AS count GROUP BY contractor_company_name , contractor_phone , contractor_email |> SELECT COUNT(contractor_company_name) as ccn_num , COUNT(contractor_phone) as cp_num , COUNT(contractor_email) as ce_num, SUM(count) as contractor_name_phone_email_totals LIMIT 15
-
-## query contractor & dedupe
-q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email , COUNT(*) AS count GROUP BY contractor_company_name , contractor_phone , contractor_email ORDER BY contractor_company_name , contractor_phone , contractor_email 
-q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email ORDER BY contractor_company_name , contractor_phone , contractor_email
-
-## query contractor & dedupe & is not null & where application_date in 201808
-q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email WHERE application_date>="2018-08-01T00:00:00.000" AND application_date<"2018-09-01T00:00:00.000" AND contractor_company_name IS NOT NULL ORDER BY contractor_company_name , contractor_phone , contractor_email
-
-## query contractor & dedupe & is not null & where application_date
-q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email WHERE application_date>="2018-08-01T00:00:00.000" AND application_date<"2018-09-01T00:00:00.000" AND contractor_company_name IS NOT NULL ORDER BY contractor_company_name , contractor_phone , contractor_email
+q = ?$query=SELECT permit_number,description,application_date,issued_date,completed_date,original_address_1,original_address_2,original_city,original_state,original_zip_code,permit_class,permit_class_mapped,status_current,status_current_mapped,work_class,work_class_mapped,permit_type,permit_type_mapped,permit_type_description,status_date,total_square_feet,link,estimated_porject_cost_dec,estimated_project_cost_text,housing_units,proposed_use,estimated_project_cost,project_name,added_square_feet,master_permit_number,expires_date,co_issued_date,hold_date,void_date,project_id,total_finished_square_feet,total_unfinished_square_feet,total_heated_square_feet,total_unheated_square_feet,total_acc_square_feet,total_sprinkler_square_feet,publisher,fee,last_updated,location_city,location,location_address,location_zip,location_state LIMIT 15
 
 ## query contractor & dedupe & is not null & where application_date & permit_type & permit_class_mapped 
-q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email WHERE application_date>="2018-08-01T00:00:00.000" AND application_date<"2018-09-01T00:00:00.000" AND contractor_company_name IS NOT NULL AND permit_class_mapped NOT LIKE '%25Non-Residential%25' AND permit_type NOT LIKE '%25Demolition%25' AND permit_type NOT LIKE '%25Plumbing%25' AND permit_type NOT LIKE '%25Fence%25' ORDER BY contractor_company_name , contractor_phone , contractor_email
+q = ?$query=SELECT permit_number,description,application_date,issued_date,completed_date,original_address_1,original_address_2,original_city,original_state,original_zip_code,permit_class,permit_class_mapped,status_current,status_current_mapped,work_class,work_class_mapped,permit_type,permit_type_mapped,permit_type_description,status_date,total_square_feet,link,estimated_porject_cost_dec,estimated_project_cost_text,housing_units,proposed_use,estimated_project_cost,project_name,added_square_feet,master_permit_number,expires_date,co_issued_date,hold_date,void_date,project_id,total_finished_square_feet,total_unfinished_square_feet,total_heated_square_feet,total_unheated_square_feet,total_acc_square_feet,total_sprinkler_square_feet,publisher,fee,last_updated,location_city,location,location_address,location_zip,location_state WHERE application_date>="2018-08-01T00:00:00.000" AND application_date<"2018-09-01T00:00:00.000" AND permit_class_mapped NOT LIKE '%25Non-Residential%25' AND permit_type NOT LIKE '%25Demolition%25' AND permit_type NOT LIKE '%25Plumbing%25' AND permit_type NOT LIKE '%25Fence%25' ORDER BY permit_number
 
 df=s+q
 
-https://data.cityofevanston.org/resource/nxfh-jnb7.json?$query=SELECT * WHERE application_date>="2018-08-01T00:00:00.000" AND application_date<"2018-09-01T00:00:00.000" AND contractor_company_name IS NOT NULL AND permit_class_mapped NOT LIKE '%25Non-Residential%25' AND permit_type NOT LIKE '%25Demolition%25' AND permit_type NOT LIKE '%25Plumbing%25' AND permit_type NOT LIKE '%25Fence%25' ORDER BY contractor_company_name , contractor_phone , contractor_email
+https://data.cityofevanston.org/resource/nxfh-jnb7.json?$query=SELECT permit_number,description,application_date,issued_date,completed_date,original_address_1,original_address_2,original_city,original_state,original_zip_code,permit_class,permit_class_mapped,status_current,status_current_mapped,work_class,work_class_mapped,permit_type,permit_type_mapped,permit_type_description,status_date,total_square_feet,link,estimated_porject_cost_dec,estimated_project_cost_text,housing_units,proposed_use,estimated_project_cost,project_name,added_square_feet,master_permit_number,expires_date,co_issued_date,hold_date,void_date,project_id,total_finished_square_feet,total_unfinished_square_feet,total_heated_square_feet,total_unheated_square_feet,total_acc_square_feet,total_sprinkler_square_feet,publisher,fee,last_updated,location_city,location,location_address,location_zip,location_state WHERE application_date>="2018-08-01T00:00:00.000" AND application_date<"2018-09-01T00:00:00.000" AND permit_class_mapped NOT LIKE '%25Non-Residential%25' AND permit_type NOT LIKE '%25Demolition%25' AND permit_type NOT LIKE '%25Plumbing%25' AND permit_type NOT LIKE '%25Fence%25' ORDER BY permit_number
