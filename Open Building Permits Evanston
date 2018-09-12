@@ -19,10 +19,13 @@ q = ?$query=SELECT contractor_company_name , contractor_trade , contractor_trade
 ## query contractor & limit & subquery
 q = ?$query=SELECT contractor_company_name , contractor_phone , contractor_email , COUNT(*) AS count GROUP BY contractor_company_name , contractor_phone , contractor_email |> SELECT COUNT(contractor_company_name) as ccn_num , COUNT(contractor_phone) as cp_num , COUNT(contractor_email) as ce_num, SUM(count) as contractor_name_phone_email_totals LIMIT 15
 
-## query contractor & limit & dedupe
+## query contractor & dedupe
 q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email , COUNT(*) AS count GROUP BY contractor_company_name , contractor_phone , contractor_email ORDER BY contractor_company_name , contractor_phone , contractor_email 
 q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email ORDER BY contractor_company_name , contractor_phone , contractor_email
 
+## query contractor & dedupe & where application_date in 201808
+q = ?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email WHERE application_date>=08/01/2018 and application_date<=08/31/2018 ORDER BY contractor_company_name , contractor_phone , contractor_email
+
 df=s+q
 
-https://data.cityofevanston.org/resource/nxfh-jnb7.json
+https://data.cityofevanston.org/resource/nxfh-jnb7.json?$query=SELECT DISTINCT contractor_company_name , contractor_phone , contractor_email WHERE application_date>=08/01/2018 and application_date<=08/31/2018 ORDER BY contractor_company_name , contractor_phone , contractor_email
